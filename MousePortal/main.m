@@ -43,6 +43,7 @@ bool tabDown = false;
       
       CFRelease(eventRef);
       
+      break;
     }
   }
 }
