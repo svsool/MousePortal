@@ -25,26 +25,42 @@ bool tabDown = false;
   NSInteger frontmostAppPID = [NSWorkspace sharedWorkspace].frontmostApplication.processIdentifier;
   NSArray* windows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   
+  CGFloat largestWindowSize = 0.0;
+  CGRect largestWindowBounds = CGRectNull;
+  
+  
   for (NSDictionary* window in windows) {
-    NSInteger windowOwnerPID = [window[(id)kCGWindowOwnerPID] intValue];
+    if ([window[(id)kCGWindowAlpha] intValue] == 0) {
+      continue;
+    }
     
-    if (windowOwnerPID == frontmostAppPID) {
+    NSInteger windowOwnerPID = [window[(id)kCGWindowOwnerPID] intValue];
+    NSString *kCGWindowLayer = [window objectForKey:@"kCGWindowLayer"];
+    
+    if (windowOwnerPID == frontmostAppPID && [kCGWindowLayer integerValue] == 0 && (BOOL)window[(id)kCGWindowIsOnscreen]) {
       
       CGRect bounds;
       CGRectMakeWithDictionaryRepresentation((CFDictionaryRef)[window objectForKey:(id)kCGWindowBounds], &bounds);
       
-      CGPoint newPosition = {bounds.origin.x + bounds.size.width / 2, bounds.origin.y + bounds.size.height / 2};
+      CGFloat windowSize = bounds.size.width * bounds.size.height;
       
-      CGEventRef eventRef = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, newPosition, kCGMouseButtonCenter);
-      
-      CGEventSetType(eventRef, kCGEventMouseMoved);
-      
-      CGEventPost(kCGSessionEventTap, eventRef);
-      
-      CFRelease(eventRef);
-      
-      break;
+      if (windowSize > largestWindowSize) {
+        largestWindowSize = windowSize;
+        largestWindowBounds = bounds;
+      }
     }
+  }
+  
+  if (!CGRectIsNull(largestWindowBounds)) {
+    CGPoint newPosition = {largestWindowBounds.origin.x + largestWindowBounds.size.width / 2, largestWindowBounds.origin.y + largestWindowBounds.size.height / 2};
+    
+    CGEventRef eventRef = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, newPosition, kCGMouseButtonCenter);
+    
+    CGEventSetType(eventRef, kCGEventMouseMoved);
+    
+    CGEventPost(kCGSessionEventTap, eventRef);
+    
+    CFRelease(eventRef);
   }
 }
 
