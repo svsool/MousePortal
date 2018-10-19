@@ -14,9 +14,10 @@ Open project in Xcode and run build.
 
 Allow [compiled binary](https://github.com/svsool/MousePortal/releases) to control your computer in Security & Privacy -> Privacy -> Accessibility.
 
-Run it in terminal:
+Run in your terminal:
 ```
-sudo ./MousePortal &
+chmod +x MousePortal
+./MousePortal &
 ```
 
 sudo might be not needed, if you will run it in iTerm2 you most probably will need to add iTerm2 to Accessibility settings as well.  
