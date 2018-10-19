@@ -35,9 +35,9 @@ bool tabDown = false;
     }
     
     NSInteger windowOwnerPID = [window[(id)kCGWindowOwnerPID] intValue];
-    NSString *kCGWindowLayer = [window objectForKey:@"kCGWindowLayer"];
+    NSString *windowLayer = [window objectForKey:@"kCGWindowLayer"];
     
-    if (windowOwnerPID == frontmostAppPID && [kCGWindowLayer integerValue] == 0 && (BOOL)window[(id)kCGWindowIsOnscreen]) {
+    if (windowOwnerPID == frontmostAppPID && [windowLayer integerValue] == 0 && (BOOL)window[(id)kCGWindowIsOnscreen]) {
       
       CGRect bounds;
       CGRectMakeWithDictionaryRepresentation((CFDictionaryRef)[window objectForKey:(id)kCGWindowBounds], &bounds);
@@ -78,6 +78,7 @@ bool tabDown = false;
 }
 @end
 
+CGEventRef eventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 CGEventRef eventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
   
   CGEventFlags flags = CGEventGetFlags(event);
@@ -115,6 +116,7 @@ int main() {
     CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
     CGEventTapEnable(eventTap, true);
     CFRunLoopRun();
+    CFRelease(runLoopSource);
   }
   
   return 0;

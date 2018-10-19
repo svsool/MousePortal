@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0238A7DE2167EB7500E513CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0238A7DD2167EB7500E513CB /* main.m */; };
+		0238A7DE2167EB7500E513CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0238A7DD2167EB7500E513CB /* main.m */; settings = {COMPILER_FLAGS = "-DNDEBUG"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		0238A7DA2167EB7500E513CB /* MousePortal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MousePortal; sourceTree = BUILT_PRODUCTS_DIR; };
 		0238A7DD2167EB7500E513CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0240670A217A8EE700B99830 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 			children = (
 				0238A7DC2167EB7500E513CB /* MousePortal */,
 				0238A7DB2167EB7500E513CB /* Products */,
+				0240670A217A8EE700B99830 /* Warnings.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,7 +182,14 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wfloat-equal",
+					"-Wundef",
+				);
 			};
 			name = Debug;
 		};
@@ -232,12 +241,20 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wfloat-equal",
+					"-Wundef",
+				);
 			};
 			name = Release;
 		};
 		0238A7E22167EB7500E513CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0240670A217A8EE700B99830 /* Warnings.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -250,6 +267,7 @@
 		};
 		0238A7E32167EB7500E513CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0240670A217A8EE700B99830 /* Warnings.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;

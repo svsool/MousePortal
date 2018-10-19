@@ -20,4 +20,4 @@ chmod +x MousePortal
 ./MousePortal &
 ```
 
-sudo might be not needed, if you will run it in iTerm2 you most probably will need to add iTerm2 to Accessibility settings as well.  
+if you are planning to run it in iTerm2 or any other terminal you have to add it to Accessibility Settings as well.  
