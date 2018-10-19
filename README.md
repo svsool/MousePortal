@@ -20,4 +20,4 @@ chmod +x MousePortal
 ./MousePortal &
 ```
 
-if you are planning to run it in iTerm2 or any other terminal you have to add it to Accessibility Settings as well.  
+If you are planning to run it in iTerm2 or any other terminal you have to add it to Accessibility Settings as well.  
