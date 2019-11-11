@@ -108,7 +108,7 @@ int main() {
                                               eventMask, eventCallback, NULL);
     
     if (!eventTap) {
-      fprintf(stderr, "failed to create event tap, MousePortal might be not allowed to access you mac, please check accessibility settings \n");
+      fprintf(stderr, "Failed to create event tap, MousePortal might be not allowed to access you mac, please check accessibility settings \n");
       exit(1);
     }
     
