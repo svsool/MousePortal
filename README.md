@@ -1,8 +1,6 @@
 # MousePortal
 
-A simple utility for macOS to move mouse cursor between multiple monitors or applications on cmd+tab.
-
-It's really easy and intuitive.
+A simple utility for macOS to move mouse cursor between multiple screens or applications on cmd+tab.
 
 [![Watch the video](https://github.com/svsool/MousePortal/blob/master/static/images/video_preview.png)](https://youtu.be/m8ntuXbTWyc)
 
